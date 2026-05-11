@@ -6,31 +6,31 @@ input_file = 'data/labeled.csv'
 output_file = 'data/labeled_processed.csv'
 
 CATEGORY_MAPPING = {
-    'ML_3_5': 3.5,
-    'ML_3_4': 3.4,
-    'ML_3_3': 3.3,
-    'ML_3_2': 3.2,
-    'ML_3_1': 3.1,
-    'ML_3': 3.0,
+    'ML_3_5': 35,
+    'ML_3_4': 34,
+    'ML_3_3': 33,
+    'ML_3_2': 32,
+    'ML_3_1': 31,
+    'ML_3': 3,
 
-    'ML_2_7_2': 2.72,
-    'ML_2_7_1': 2.71,
-    'ML_2_6': 2.6,
-    'ML_2_5_1': 2.51,
-    'ML_2_4_2': 2.42,
-    'ML_2_4_1': 2.41,
-    'ML_2_3_1': 2.31,
-    'ML_2_3': 2.3,
-    'ML_2_2': 2.2,
-    'ML_2_1_3': 2.13,
-    'ML_2_1_2': 2.12,
-    'ML_2_1_1': 2.11,
-    'ML_2': 2.0,
+    'ML_2_7_2': 272,
+    'ML_2_7_1': 271,
+    'ML_2_6': 26,
+    'ML_2_5_1': 251,
+    'ML_2_4_2': 242,
+    'ML_2_4_1': 241,
+    'ML_2_3_1': 231,
+    'ML_2_3': 23,
+    'ML_2_2': 22,
+    'ML_2_1_3': 213,
+    'ML_2_1_2': 212,
+    'ML_2_1_1': 211,
+    'ML_2': 2,
 
-    'ML_1_2': 1.2,
-    'ML_1_1_1': 1.11,
-    'ML_1_1': 1.1,
-    'ML_1': 1.0,
+    'ML_1_2': 12,
+    'ML_1_1_1': 111,
+    'ML_1_1': 11,
+    'ML_1': 1,
 }
 
 index = 0
@@ -44,7 +44,7 @@ with open(input_file, mode='r', newline='') as infile:
         writer.writeheader()
 
         for row in reader:
-            event_type = 0.0
+            event_type = 0
 
             for category in CATEGORY_MAPPING:
                 if any(row[k] == '1.0' for k in row if k.startswith(category)):
