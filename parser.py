@@ -6,33 +6,121 @@ def limit_to_one_category(category_to_limit_to):
     input_file = 'data/labeled.csv'
     output_file = f'data/labeled_processed_only_{category_to_limit_to}.csv'
 
-    category_mapping = {
-        'ML_3_5': 35,
-        'ML_3_4': 34,
-        'ML_3_3': 33,
-        'ML_3_2': 32,
-        'ML_3_1': 31,
-        'ML_3': 3,
+    if category_to_limit_to == 0:
+        category_mapping = {
+            'ML_3_5': 1,
+            'ML_3_4': 1,
+            'ML_3_3': 1,
+            'ML_3_2': 1,
+            'ML_3_1': 1,
+            'ML_3': 1,
 
-        'ML_2_7_2': 272,
-        'ML_2_7_1': 271,
-        'ML_2_6': 26,
-        'ML_2_5_1': 251,
-        'ML_2_4_2': 242,
-        'ML_2_4_1': 241,
-        'ML_2_3_1': 231,
-        'ML_2_3': 23,
-        'ML_2_2': 22,
-        'ML_2_1_3': 213,
-        'ML_2_1_2': 212,
-        'ML_2_1_1': 211,
-        'ML_2': 2,
+            'ML_2_7_2': 1,
+            'ML_2_7_1': 1,
+            'ML_2_6': 1,
+            'ML_2_5_1': 1,
+            'ML_2_4_2': 1,
+            'ML_2_4_1': 1,
+            'ML_2_3_1': 1,
+            'ML_2_3': 1,
+            'ML_2_2': 1,
+            'ML_2_1_3': 1,
+            'ML_2_1_2': 1,
+            'ML_2_1_1': 1,
+            'ML_2': 1,
 
-        'ML_1_2': 12,
-        'ML_1_1_1': 111,
-        'ML_1_1': 11,
-        'ML_1': 1,
-    }
+            'ML_1_2': 1,
+            'ML_1_1_1': 1,
+            'ML_1_1': 1,
+            'ML_1': 1,
+        }
+
+    elif category_to_limit_to == 1:
+        category_mapping = {
+            'ML_3_5': 0,
+            'ML_3_4': 0,
+            'ML_3_3': 0,
+            'ML_3_2': 0,
+            'ML_3_1': 0,
+            'ML_3': 0,
+
+            'ML_2_7_2': 0,
+            'ML_2_7_1': 0,
+            'ML_2_6': 0,
+            'ML_2_5_1': 0,
+            'ML_2_4_2': 0,
+            'ML_2_4_1': 0,
+            'ML_2_3_1': 0,
+            'ML_2_3': 0,
+            'ML_2_2': 0,
+            'ML_2_1_3': 0,
+            'ML_2_1_2': 0,
+            'ML_2_1_1': 0,
+            'ML_2': 0,
+
+            'ML_1_2': 12,
+            'ML_1_1_1': 111,
+            'ML_1_1': 11,
+            'ML_1': 1,
+        }
+
+    elif category_to_limit_to == 2:
+        category_mapping = {
+            'ML_3_5': 0,
+            'ML_3_4': 0,
+            'ML_3_3': 0,
+            'ML_3_2': 0,
+            'ML_3_1': 0,
+            'ML_3': 0,
+
+            'ML_2_7_2': 272,
+            'ML_2_7_1': 271,
+            'ML_2_6': 26,
+            'ML_2_5_1': 251,
+            'ML_2_4_2': 242,
+            'ML_2_4_1': 241,
+            'ML_2_3_1': 231,
+            'ML_2_3': 23,
+            'ML_2_2': 22,
+            'ML_2_1_3': 213,
+            'ML_2_1_2': 212,
+            'ML_2_1_1': 211,
+            'ML_2': 2,
+
+            'ML_1_2': 0,
+            'ML_1_1_1': 0,
+            'ML_1_1': 0,
+            'ML_1': 0,
+        }
+
+    elif category_to_limit_to == 3:
+        category_mapping = {
+            'ML_3_5': 35,
+            'ML_3_4': 34,
+            'ML_3_3': 33,
+            'ML_3_2': 32,
+            'ML_3_1': 31,
+            'ML_3': 3,
+
+            'ML_2_7_2': 0,
+            'ML_2_7_1': 0,
+            'ML_2_6': 0,
+            'ML_2_5_1': 0,
+            'ML_2_4_2': 0,
+            'ML_2_4_1': 0,
+            'ML_2_3_1': 0,
+            'ML_2_3': 0,
+            'ML_2_2': 0,
+            'ML_2_1_3': 0,
+            'ML_2_1_2': 0,
+            'ML_2_1_1': 0,
+            'ML_2': 0,
+
+            'ML_1_2': 0,
+            'ML_1_1_1': 0,
+            'ML_1_1': 0,
+            'ML_1': 0,
+        }
 
     index = 0
 
@@ -47,12 +135,6 @@ def limit_to_one_category(category_to_limit_to):
             for row in reader:
                 index += 1
                 print(index)
-
-                if not any(row[k] == '1.0' for k in row if k.startswith('ML_')):
-                    continue
-
-                if any(row[k] == '1.0' for k in row if not k.startswith(f'ML_{category_to_limit_to}')):
-                   continue
 
                 event_type = 0
 
@@ -123,6 +205,7 @@ def four_categories():
 
 
 #four_categories()
+limit_to_one_category(0)
 #limit_to_one_category(1)
 #limit_to_one_category(2)
-limit_to_one_category(3)
+#limit_to_one_category(3)
