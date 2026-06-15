@@ -2,7 +2,7 @@ from catboost import CatBoostClassifier
 import numpy as np
 
 AllCat = CatBoostClassifier()
-AllCat.load_model("CatBoost_AllCategories")  # predicts main categories: 0, 1, 2, 3
+AllCat.load_model("CatBoost_4Categories")  # predicts main categories: 0, 1, 2, 3
 
 NormalCat = CatBoostClassifier()
 NormalCat.load_model("CatBoost_0NoEvent")  # predicts subcategories: 0(NoEvent), 1(SomeEvent)
