@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 from FiveCats import five_cats_predict
 
 # --- Load & prepare data ---
-labeled_dataset = pd.read_csv('data/labeled_processed.csv')
+labeled_dataset = pd.read_csv('data/labeled_processed_validation.csv')
 
 fields_to_drop = [
     'sample', 'file_name', 'ML_1', 'ML_1_1', 'ML_1_1_1', 'ML_1_2', 'ML_2', 'ML_2_1_1', 'ML_2_1_2', 'ML_2_1_3',
@@ -13,7 +13,9 @@ fields_to_drop = [
     'ML_3', 'ML_3_1', 'ML_3_2', 'ML_3_3', 'ML_3_4', 'ML_3_5', 'event_type'
 ]
 
-random_entries = labeled_dataset.sample(n=70000, random_state=42)
+#random_entries = labeled_dataset.sample(n=70000, random_state=42)
+random_entries = labeled_dataset
+
 y_true = random_entries['event_type'].tolist()
 X = random_entries.drop(fields_to_drop, axis=1, errors='ignore')
 

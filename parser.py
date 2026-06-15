@@ -1,10 +1,12 @@
 # adding a separate field for easier classification
 
 import csv
+import pandas as pd
+from sklearn.model_selection import train_test_split
 
 def limit_to_one_category(category_to_limit_to):
     input_file = 'data/labeled.csv'
-    output_file = f'data/labeled_processed_only_{category_to_limit_to}.csv'
+    output_file = f'data/FiveCats/labeled_processed_only_{category_to_limit_to}.csv'
 
     if category_to_limit_to == 0:
         category_mapping = {
@@ -204,8 +206,46 @@ def four_categories():
                 print(index)
 
 
+def divide_to_traintest_val(category):
+    input_file = f'data/FiveCats/labeled_processed_only_{category}.csv'
+    output_traintest_file = f'data/FiveCats/only{category}_traintest.csv'
+    output_validation_file = f'data/FiveCats/only{category}_validation.csv'
+
+    labeled_dataset = pd.read_csv(input_file)
+
+    traintest, val = train_test_split(
+        labeled_dataset,
+        test_size=0.15,
+        random_state=1,
+        stratify=labeled_dataset['event_type']
+    )
+    traintest.to_csv(output_traintest_file, index=False)
+    val.to_csv(output_validation_file, index=False)
+
+def divide_processed_to_traintest_val():
+    input_file = f'data/labeled_processed.csv'
+    output_traintest_file = f'data/labeled_processed_traintest.csv'
+    output_validation_file = f'data/labeled_processed_validation.csv'
+
+    labeled_dataset = pd.read_csv(input_file)
+
+    traintest, val = train_test_split(
+        labeled_dataset,
+        test_size=0.15,
+        random_state=1,
+        stratify=labeled_dataset['event_type']
+    )
+    traintest.to_csv(output_traintest_file, index=False)
+    val.to_csv(output_validation_file, index=False)
+
+divide_processed_to_traintest_val()
 #four_categories()
-limit_to_one_category(0)
+#limit_to_one_category(0)
 #limit_to_one_category(1)
+#divide_to_traintest_val(1)
+
 #limit_to_one_category(2)
+#divide_to_traintest_val(2)
+
 #limit_to_one_category(3)
+#divide_to_traintest_val(3)
