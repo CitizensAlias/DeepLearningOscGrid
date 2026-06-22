@@ -1,0 +1,81 @@
+Class distribution:
+event_type
+2    574721
+0    506521
+3    177078
+1     53670
+Name: count, dtype: int64
+
+Split sizes — train: 918393, val: 196798, test: 196799
+
+CNN input shape: (918393, 18, 1)
+
+Label classes: [np.int64(0), np.int64(1), np.int64(2), np.int64(3)]
+Class weights:
+  Class 0 (No Event): 2.72
+  Class 1 (Operational Switching): 12.35
+  Class 2 (Abnormal Events): 2.33
+  Class 3 (Fault Events): 8.20
+
+Number of input features: 18
+Model: "sequential"
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━┓
+┃ Layer (type)                    ┃ Output Shape           ┃       Param # ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━┩
+│ conv1d (Conv1D)                 │ (None, 18, 64)         │           256 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ batch_normalization             │ (None, 18, 64)         │           256 │
+│ (BatchNormalization)            │                        │               │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ max_pooling1d (MaxPooling1D)    │ (None, 9, 64)          │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dropout (Dropout)               │ (None, 9, 64)          │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ conv1d_1 (Conv1D)               │ (None, 9, 128)         │        24,704 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ batch_normalization_1           │ (None, 9, 128)         │           512 │
+│ (BatchNormalization)            │                        │               │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ max_pooling1d_1 (MaxPooling1D)  │ (None, 4, 128)         │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dropout_1 (Dropout)             │ (None, 4, 128)         │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ conv1d_2 (Conv1D)               │ (None, 4, 64)          │        24,640 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ batch_normalization_2           │ (None, 4, 64)          │           256 │
+│ (BatchNormalization)            │                        │               │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dropout_2 (Dropout)             │ (None, 4, 64)          │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ global_average_pooling1d        │ (None, 64)             │             0 │
+│ (GlobalAveragePooling1D)        │                        │               │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dense (Dense)                   │ (None, 64)             │         4,160 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dropout_3 (Dropout)             │ (None, 64)             │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dense_1 (Dense)                 │ (None, 4)              │           260 │
+└─────────────────────────────────┴────────────────────────┴───────────────┘
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.91      0.94      0.93     75978
+           1       0.51      0.69      0.58      8051
+           2       0.99      0.93      0.96     86208
+           3       0.97      0.98      0.98     26562
+
+    accuracy                           0.93    196799
+   macro avg       0.85      0.89      0.86    196799
+weighted avg       0.94      0.93      0.93    196799
+
+Confusion matrix saved to confusion_matrix_cnn.png
+Training curves saved to training_curves_cnn.png
+
+Saved:
+  oscillogram_classifier_cnn.keras
+  scaler_cnn.pkl
+  label_encoder_cnn.pkl
+  
+ Total params: 55,044 (215.02 KB)
+ Trainable params: 54,532 (213.02 KB)
+ Non-trainable params: 512 (2.00 KB)
