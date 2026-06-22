@@ -17,7 +17,7 @@ import seaborn as sns
 # ─────────────────────────────────────────────
 RANDOM_STATE = 1
 NUM_CLASSES = 4
-BATCH_SIZE = 32
+BATCH_SIZE = 128
 EPOCHS = 100
 
 FIELDS_TO_DROP = [
@@ -108,15 +108,19 @@ print(f"\nNumber of input features: {n_features}")
 model = keras.Sequential([
     layers.Input(shape=(n_features,)),
 
-    layers.Dense(256, activation='relu', kernel_regularizer=regularizers.l2(1e-4)),
+    layers.Dense(256, activation='relu'),
     layers.BatchNormalization(),
     layers.Dropout(0.3),
 
-    layers.Dense(128, activation='relu', kernel_regularizer=regularizers.l2(1e-4)),
+    layers.Dense(128, activation='relu'),
     layers.BatchNormalization(),
     layers.Dropout(0.3),
 
-    layers.Dense(64, activation='relu', kernel_regularizer=regularizers.l2(1e-4)),
+    layers.Dense(64, activation='relu'),
+    layers.BatchNormalization(),
+    layers.Dropout(0.2),
+
+    layers.Dense(32, activation='relu'),
     layers.BatchNormalization(),
     layers.Dropout(0.2),
 
@@ -124,7 +128,7 @@ model = keras.Sequential([
 ])
 
 model.compile(
-    optimizer=keras.optimizers.Adam(learning_rate=0.001),
+    optimizer=keras.optimizers.Adam(learning_rate=0.0005),
     loss='categorical_crossentropy',
     metrics=['accuracy']
 )

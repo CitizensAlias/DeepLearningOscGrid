@@ -1,19 +1,3 @@
-nohup: ignoring input
-WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
-I0000 00:00:1780144247.777462 3000534 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
-I0000 00:00:1780144247.838557 3000534 cpu_feature_guard.cc:227] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
-To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
-WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
-I0000 00:00:1780144249.793114 3000534 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
-I0000 00:00:1780144263.081466 3000534 gpu_device.cc:2043] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 46539 MB memory:  -> device: 0, name: NVIDIA RTX 6000 Ada Generation, pci bus id: 0000:3d:00.0, compute capability: 8.9
-I0000 00:00:1780144263.083461 3000534 gpu_device.cc:2043] Created device /job:localhost/replica:0/task:0/device:GPU:1 with 46539 MB memory:  -> device: 1, name: NVIDIA RTX 6000 Ada Generation, pci bus id: 0000:61:00.0, compute capability: 8.9
-I0000 00:00:1780144263.085718 3000534 gpu_device.cc:2043] Created device /job:localhost/replica:0/task:0/device:GPU:2 with 22806 MB memory:  -> device: 2, name: NVIDIA TITAN RTX, pci bus id: 0000:60:00.0, compute capability: 7.5
-I0000 00:00:1780144263.088041 3000534 gpu_device.cc:2043] Created device /job:localhost/replica:0/task:0/device:GPU:3 with 22806 MB memory:  -> device: 3, name: NVIDIA TITAN RTX, pci bus id: 0000:64:00.0, compute capability: 7.5
-I0000 00:00:1780144263.090312 3000534 gpu_device.cc:2043] Created device /job:localhost/replica:0/task:0/device:GPU:4 with 9614 MB memory:  -> device: 4, name: NVIDIA GeForce RTX 2080 Ti, pci bus id: 0000:3e:00.0, compute capability: 7.5
-I0000 00:00:1780144263.092570 3000534 gpu_device.cc:2043] Created device /job:localhost/replica:0/task:0/device:GPU:5 with 9614 MB memory:  -> device: 5, name: NVIDIA GeForce RTX 2080 Ti, pci bus id: 0000:42:00.0, compute capability: 7.5
-I0000 00:00:1780144263.095041 3000534 gpu_device.cc:2043] Created device /job:localhost/replica:0/task:0/device:GPU:6 with 9614 MB memory:  -> device: 6, name: NVIDIA GeForce RTX 2080 Ti, pci bus id: 0000:43:00.0, compute capability: 7.5
-Dataset shape: (1311990, 44)
-
 Class distribution:
 event_type
 2    574721
@@ -57,140 +41,27 @@ Model: "sequential"
 ├─────────────────────────────────┼────────────────────────┼───────────────┤
 │ dropout_2 (Dropout)             │ (None, 64)             │             0 │
 ├─────────────────────────────────┼────────────────────────┼───────────────┤
-│ dense_3 (Dense)                 │ (None, 4)              │           260 │
+│ dense_3 (Dense)                 │ (None, 32)             │         2,080 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ batch_normalization_3           │ (None, 32)             │           128 │
+│ (BatchNormalization)            │                        │               │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dropout_3 (Dropout)             │ (None, 32)             │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dense_4 (Dense)                 │ (None, 4)              │           132 │
 └─────────────────────────────────┴────────────────────────┴───────────────┘
- Total params: 48,068 (187.77 KB)
- Trainable params: 47,172 (184.27 KB)
- Non-trainable params: 896 (3.50 KB)
-Epoch 1/100
-I0000 00:00:1780144267.878530 3000979 service.cc:153] XLA service 0x7fd6b8035da0 initialized for platform CUDA (this does not guarantee that XLA will be used). Devices:
-I0000 00:00:1780144267.878583 3000979 service.cc:161]   StreamExecutor [0]: NVIDIA RTX 6000 Ada Generation, Compute Capability 8.9 (Driver: 12.9.0; Runtime: 12.5.0; Toolkit: 12.5.0; DNN: 9.10.2)
-I0000 00:00:1780144267.878594 3000979 service.cc:161]   StreamExecutor [1]: NVIDIA RTX 6000 Ada Generation, Compute Capability 8.9 (Driver: 12.9.0; Runtime: 12.5.0; Toolkit: 12.5.0; DNN: 9.10.2)
-I0000 00:00:1780144267.878600 3000979 service.cc:161]   StreamExecutor [2]: NVIDIA TITAN RTX, Compute Capability 7.5 (Driver: 12.9.0; Runtime: 12.5.0; Toolkit: 12.5.0; DNN: 9.10.2)
-I0000 00:00:1780144267.878606 3000979 service.cc:161]   StreamExecutor [3]: NVIDIA TITAN RTX, Compute Capability 7.5 (Driver: 12.9.0; Runtime: 12.5.0; Toolkit: 12.5.0; DNN: 9.10.2)
-I0000 00:00:1780144267.878611 3000979 service.cc:161]   StreamExecutor [4]: NVIDIA GeForce RTX 2080 Ti, Compute Capability 7.5 (Driver: 12.9.0; Runtime: 12.5.0; Toolkit: 12.5.0; DNN: 9.10.2)
-I0000 00:00:1780144267.878630 3000979 service.cc:161]   StreamExecutor [5]: NVIDIA GeForce RTX 2080 Ti, Compute Capability 7.5 (Driver: 12.9.0; Runtime: 12.5.0; Toolkit: 12.5.0; DNN: 9.10.2)
-I0000 00:00:1780144267.878635 3000979 service.cc:161]   StreamExecutor [6]: NVIDIA GeForce RTX 2080 Ti, Compute Capability 7.5 (Driver: 12.9.0; Runtime: 12.5.0; Toolkit: 12.5.0; DNN: 9.10.2)
-I0000 00:00:1780144267.934836 3000979 dump_mlir_util.cc:269] disabling MLIR crash reproducer, set env var `MLIR_CRASH_REPRODUCER_DIRECTORY` to enable.
-I0000 00:00:1780144268.279782 3000979 cuda_dnn.cc:461] Loaded cuDNN version 91002
-I0000 00:00:1780144268.404308 3000979 dot_merger.cc:481] Merging Dots in computation: a_inference_one_step_on_data_3400__.43
-I0000 00:00:1780144268.534167 3000979 dot_search_space.cc:240] All configs were filtered out because none of them sufficiently match the hints. Maybe the hints set does not contain a good representative set of valid configs? Working around this by using the full hints set instead.
-I0000 00:00:1780144269.492569 3001123 subprocess_compilation.cc:348] ptxas warning : Registers are spilled to local memory in function 'gemm_fusion_MatMul_30', 52 bytes spill stores, 52 bytes spill loads
 
-I0000 00:00:1780144269.788961 3000979 dot_search_space.cc:240] All configs were filtered out because none of them sufficiently match the hints. Maybe the hints set does not contain a good representative set of valid configs? Working around this by using the full hints set instead.
-I0000 00:00:1780144270.550686 3000979 dot_search_space.cc:240] All configs were filtered out because none of them sufficiently match the hints. Maybe the hints set does not contain a good representative set of valid configs? Working around this by using the full hints set instead.
-I0000 00:00:1780144271.530271 3000979 dot_search_space.cc:240] All configs were filtered out because none of them sufficiently match the hints. Maybe the hints set does not contain a good representative set of valid configs? Working around this by using the full hints set instead.
-I0000 00:00:1780144272.109336 3001126 subprocess_compilation.cc:348] ptxas warning : Registers are spilled to local memory in function 'gemm_fusion_MatMul_26', 12 bytes spill stores, 12 bytes spill loads
-
-I0000 00:00:1780144272.148354 3000979 dot_search_space.cc:240] All configs were filtered out because none of them sufficiently match the hints. Maybe the hints set does not contain a good representative set of valid configs? Working around this by using the full hints set instead.
-I0000 00:00:1780144272.824739 3000979 dot_search_space.cc:240] All configs were filtered out because none of them sufficiently match the hints. Maybe the hints set does not contain a good representative set of valid configs? Working around this by using the full hints set instead.
-I0000 00:00:1780144273.507972 3000979 dot_search_space.cc:240] All configs were filtered out because none of them sufficiently match the hints. Maybe the hints set does not contain a good representative set of valid configs? Working around this by using the full hints set instead.
-I0000 00:00:1780144280.476120 3000979 device_compiler.h:208] Compiled cluster using XLA!  This line is logged at most once for the lifetime of the process.
-I0000 00:00:1780144422.433650 3000980 dot_search_space.cc:240] All configs were filtered out because none of them sufficiently match the hints. Maybe the hints set does not contain a good representative set of valid configs? Working around this by using the full hints set instead.
-I0000 00:00:1780144423.022493 3002164 subprocess_compilation.cc:348] ptxas warning : Registers are spilled to local memory in function 'gemm_fusion_MatMul_26', 12 bytes spill stores, 12 bytes spill loads
-
-I0000 00:00:1780144423.561625 3000980 dot_search_space.cc:240] All configs were filtered out because none of them sufficiently match the hints. Maybe the hints set does not contain a good representative set of valid configs? Working around this by using the full hints set instead.
-I0000 00:00:1780144424.334703 3000980 dot_search_space.cc:240] All configs were filtered out because none of them sufficiently match the hints. Maybe the hints set does not contain a good representative set of valid configs? Working around this by using the full hints set instead.
-I0000 00:00:1780144425.387280 3000980 dot_search_space.cc:240] All configs were filtered out because none of them sufficiently match the hints. Maybe the hints set does not contain a good representative set of valid configs? Working around this by using the full hints set instead.
-
-I0000 00:00:1780144455.056355 3000973 dot_search_space.cc:240] All configs were filtered out because none of them sufficiently match the hints. Maybe the hints set does not contain a good representative set of valid configs? Working around this by using the full hints set instead.
-
-[1m28700/28700[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m192s[0m 6ms/step - accuracy: 0.8403 - loss: 1.6907 - val_accuracy: 0.8675 - val_loss: 0.4211 - learning_rate: 0.0010
-Epoch 2/100[1m28700/28700[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m161s[0m 6ms/step - accuracy: 0.8620 - loss: 1.5026 - val_accuracy: 0.8794 - val_loss: 0.4192 - learning_rate: 0.0010
-Epoch 3/100[1m28700/28700[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m163s[0m 6ms/step - accuracy: 0.8672 - loss: 1.4680 - val_accuracy: 0.8794 - val_loss: 0.4208 - learning_rate: 0.0010
-Epoch 4/100[1m28700/28700[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m156s[0m 5ms/step - accuracy: 0.8689 - loss: 1.4495 - val_accuracy: 0.8589 - val_loss: 0.4458 - learning_rate: 0.0010
-Epoch 5/100[1m28700/28700[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m159s[0m 6ms/step - accuracy: 0.8710 - loss: 1.4354 - val_accuracy: 0.8837 - val_loss: 0.4326 - learning_rate: 0.0010
-Epoch 6/100[1m28700/28700[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m163s[0m 6ms/step - accuracy: 0.8723 - loss: 1.4287 - val_accuracy: 0.8696 - val_loss: 0.4403 - learning_rate: 0.0010
-Epoch 7/100[1m28700/28700[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m159s[0m 6ms/step - accuracy: 0.8735 - loss: 1.4217 - val_accuracy: 0.8747 - val_loss: 0.4374 - learning_rate: 0.0010
-Epoch 8/100[1m28700/28700[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m159s[0m 6ms/step - accuracy: 0.8737 - loss: 1.4228 - val_accuracy: 0.8717 - val_loss: 0.4433 - learning_rate: 0.0010
-Epoch 9/100
-Epoch 9: ReduceLROnPlateau reducing learning rate to 0.0005000000237487257.[1m28700/28700[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m162s[0m 6ms/step - accuracy: 0.8742 - loss: 1.4209 - val_accuracy: 0.8593 - val_loss: 0.4699 - learning_rate: 0.0010
-Epoch 10/100[1m28700/28700[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m155s[0m 5ms/step - accuracy: 0.8810 - loss: 1.3334 - val_accuracy: 0.8813 - val_loss: 0.4166 - learning_rate: 5.0000e-04
-Epoch 11/100[1m28700/28700[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m158s[0m 5ms/step - accuracy: 0.8831 - loss: 1.3029 - val_accuracy: 0.8379 - val_loss: 0.4307 - learning_rate: 5.0000e-04
-Epoch 12/100[1m28700/28700[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m163s[0m 6ms/step - accuracy: 0.8835 - loss: 1.2977 - val_accuracy: 0.8354 - val_loss: 0.4396 - learning_rate: 5.0000e-04
-Epoch 13/100[1m28700/28700[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m161s[0m 6ms/step - accuracy: 0.8833 - loss: 1.2900 - val_accuracy: 0.8609 - val_loss: 0.4312 - learning_rate: 5.0000e-04
-Epoch 14/100[1m28700/28700[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m155s[0m 5ms/step - accuracy: 0.8841 - loss: 1.2821 - val_accuracy: 0.8904 - val_loss: 0.3991 - learning_rate: 5.0000e-04
-Epoch 15/100[1m28700/28700[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m159s[0m 6ms/step - accuracy: 0.8848 - loss: 1.2817 - val_accuracy: 0.8952 - val_loss: 0.3766 - learning_rate: 5.0000e-04
-Epoch 16/100[1m28700/28700[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m163s[0m 6ms/step - accuracy: 0.8843 - loss: 1.2798 - val_accuracy: 0.8980 - val_loss: 0.3893 - learning_rate: 5.0000e-04
-Epoch 17/100[1m28700/28700[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m158s[0m 5ms/step - accuracy: 0.8849 - loss: 1.2777 - val_accuracy: 0.8791 - val_loss: 0.4059 - learning_rate: 5.0000e-04
-Epoch 18/100[1m28700/28700[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m162s[0m 6ms/step - accuracy: 0.8850 - loss: 1.2778 - val_accuracy: 0.8690 - val_loss: 0.4149 - learning_rate: 5.0000e-04
-Epoch 19/100[1m28700/28700[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m159s[0m 6ms/step - accuracy: 0.8849 - loss: 1.2729 - val_accuracy: 0.8899 - val_loss: 0.3972 - learning_rate: 5.0000e-04
-Epoch 20/100[1m28700/28700[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m159s[0m 6ms/step - accuracy: 0.8857 - loss: 1.2733 - val_accuracy: 0.8696 - val_loss: 0.4180 - learning_rate: 5.0000e-04
-Epoch 21/100[1m28700/28700[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m159s[0m 6ms/step - accuracy: 0.8848 - loss: 1.2725 - val_accuracy: 0.8850 - val_loss: 0.3837 - learning_rate: 5.0000e-04
-Epoch 22/100
-Epoch 22: ReduceLROnPlateau reducing learning rate to 0.0002500000118743628.[1m28700/28700[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m166s[0m 6ms/step - accuracy: 0.8854 - loss: 1.2692 - val_accuracy: 0.8577 - val_loss: 0.4087 - learning_rate: 5.0000e-04
-Epoch 23/100[1m28700/28700[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m162s[0m 6ms/step - accuracy: 0.8905 - loss: 1.2165 - val_accuracy: 0.8818 - val_loss: 0.3823 - learning_rate: 2.5000e-04
-Epoch 24/100[1m28700/28700[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m154s[0m 5ms/step - accuracy: 0.8919 - loss: 1.2010 - val_accuracy: 0.8925 - val_loss: 0.3854 - learning_rate: 2.5000e-04
-Epoch 25/100[1m28700/28700[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m162s[0m 6ms/step - accuracy: 0.8916 - loss: 1.1919 - val_accuracy: 0.8923 - val_loss: 0.3711 - learning_rate: 2.5000e-04
-Epoch 26/100[1m28700/28700[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m161s[0m 6ms/step - accuracy: 0.8925 - loss: 1.1861 - val_accuracy: 0.8988 - val_loss: 0.3684 - learning_rate: 2.5000e-04
-Epoch 27/100[1m28700/28700[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m159s[0m 6ms/step - accuracy: 0.8930 - loss: 1.1829 - val_accuracy: 0.8695 - val_loss: 0.3797 - learning_rate: 2.5000e-04
-Epoch 28/100[1m28700/28700[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m160s[0m 6ms/step - accuracy: 0.8927 - loss: 1.1845 - val_accuracy: 0.9001 - val_loss: 0.3641 - learning_rate: 2.5000e-04
-Epoch 29/100[1m28700/28700[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m159s[0m 6ms/step - accuracy: 0.8919 - loss: 1.1819 - val_accuracy: 0.8702 - val_loss: 0.3713 - learning_rate: 2.5000e-04
-Epoch 30/100[1m28700/28700[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m157s[0m 5ms/step - accuracy: 0.8928 - loss: 1.1782 - val_accuracy: 0.8931 - val_loss: 0.3653 - learning_rate: 2.5000e-04
-Epoch 31/100[1m28700/28700[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m164s[0m 6ms/step - accuracy: 0.8924 - loss: 1.1780 - val_accuracy: 0.9027 - val_loss: 0.3592 - learning_rate: 2.5000e-04
-Epoch 32/100[1m28700/28700[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m164s[0m 6ms/step - accuracy: 0.8933 - loss: 1.1776 - val_accuracy: 0.8686 - val_loss: 0.3695 - learning_rate: 2.5000e-04
-Epoch 33/100[1m28700/28700[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m160s[0m 6ms/step - accuracy: 0.8935 - loss: 1.1750 - val_accuracy: 0.8928 - val_loss: 0.3654 - learning_rate: 2.5000e-04
-Epoch 34/100[1m28700/28700[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m160s[0m 6ms/step - accuracy: 0.8939 - loss: 1.1730 - val_accuracy: 0.8878 - val_loss: 0.3598 - learning_rate: 2.5000e-04
-Epoch 35/100[1m28700/28700[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m158s[0m 5ms/step - accuracy: 0.8929 - loss: 1.1738 - val_accuracy: 0.8816 - val_loss: 0.3683 - learning_rate: 2.5000e-04
-Epoch 36/100[1m28700/28700[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m161s[0m 6ms/step - accuracy: 0.8936 - loss: 1.1735 - val_accuracy: 0.8952 - val_loss: 0.3606 - learning_rate: 2.5000e-04
-Epoch 37/100[1m28700/28700[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m160s[0m 6ms/step - accuracy: 0.8943 - loss: 1.1722 - val_accuracy: 0.9002 - val_loss: 0.3511 - learning_rate: 2.5000e-04
-Epoch 38/100[1m28700/28700[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m164s[0m 6ms/step - accuracy: 0.8938 - loss: 1.1720 - val_accuracy: 0.9063 - val_loss: 0.3422 - learning_rate: 2.5000e-04
-Epoch 39/100[1m28700/28700[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m160s[0m 6ms/step - accuracy: 0.8936 - loss: 1.1722 - val_accuracy: 0.8931 - val_loss: 0.3558 - learning_rate: 2.5000e-04
-Epoch 40/100[1m28700/28700[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m161s[0m 6ms/step - accuracy: 0.8944 - loss: 1.1666 - val_accuracy: 0.8987 - val_loss: 0.3553 - learning_rate: 2.5000e-04
-Epoch 41/100[1m28700/28700[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m160s[0m 6ms/step - accuracy: 0.8943 - loss: 1.1694 - val_accuracy: 0.8959 - val_loss: 0.3658 - learning_rate: 2.5000e-04
-Epoch 42/100[1m28700/28700[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m162s[0m 6ms/step - accuracy: 0.8941 - loss: 1.1669 - val_accuracy: 0.8954 - val_loss: 0.3617 - learning_rate: 2.5000e-04
-Epoch 43/100[1m28700/28700[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m161s[0m 6ms/step - accuracy: 0.8942 - loss: 1.1669 - val_accuracy: 0.9041 - val_loss: 0.3560 - learning_rate: 2.5000e-04
-Epoch 44/100[1m28700/28700[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m163s[0m 6ms/step - accuracy: 0.8941 - loss: 1.1668 - val_accuracy: 0.8982 - val_loss: 0.3632 - learning_rate: 2.5000e-04
-Epoch 45/100
-Epoch 45: ReduceLROnPlateau reducing learning rate to 0.0001250000059371814.[1m28700/28700[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m159s[0m 6ms/step - accuracy: 0.8942 - loss: 1.1674 - val_accuracy: 0.8982 - val_loss: 0.3533 - learning_rate: 2.5000e-04
-Epoch 46/100[1m28700/28700[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m163s[0m 6ms/step - accuracy: 0.8975 - loss: 1.1335 - val_accuracy: 0.8884 - val_loss: 0.3662 - learning_rate: 1.2500e-04
-Epoch 47/100[1m28700/28700[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m158s[0m 5ms/step - accuracy: 0.8981 - loss: 1.1237 - val_accuracy: 0.8935 - val_loss: 0.3625 - learning_rate: 1.2500e-04
-Epoch 48/100[1m28700/28700[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m158s[0m 6ms/step - accuracy: 0.8988 - loss: 1.1203 - val_accuracy: 0.9082 - val_loss: 0.3347 - learning_rate: 1.2500e-04
-Epoch 49/100[1m28700/28700[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m158s[0m 6ms/step - accuracy: 0.8986 - loss: 1.1187 - val_accuracy: 0.9010 - val_loss: 0.3474 - learning_rate: 1.2500e-04
-Epoch 50/100[1m28700/28700[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m156s[0m 5ms/step - accuracy: 0.8991 - loss: 1.1122 - val_accuracy: 0.9065 - val_loss: 0.3422 - learning_rate: 1.2500e-04
-Epoch 51/100[1m28700/28700[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m162s[0m 6ms/step - accuracy: 0.8987 - loss: 1.1112 - val_accuracy: 0.8984 - val_loss: 0.3445 - learning_rate: 1.2500e-04
-Epoch 52/100[1m28700/28700[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m161s[0m 6ms/step - accuracy: 0.8990 - loss: 1.1132 - val_accuracy: 0.9080 - val_loss: 0.3423 - learning_rate: 1.2500e-04
-Epoch 53/100[1m28700/28700[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m159s[0m 6ms/step - accuracy: 0.8988 - loss: 1.1063 - val_accuracy: 0.9171 - val_loss: 0.3312 - learning_rate: 1.2500e-04
-Epoch 54/100[1m28700/28700[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m160s[0m 6ms/step - accuracy: 0.8992 - loss: 1.1065 - val_accuracy: 0.9008 - val_loss: 0.3496 - learning_rate: 1.2500e-04
-Epoch 55/100[1m28700/28700[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m161s[0m 6ms/step - accuracy: 0.8994 - loss: 1.1048 - val_accuracy: 0.8767 - val_loss: 0.3435 - learning_rate: 1.2500e-04
-Epoch 56/100[1m28700/28700[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m162s[0m 6ms/step - accuracy: 0.8992 - loss: 1.1082 - val_accuracy: 0.8732 - val_loss: 0.3622 - learning_rate: 1.2500e-04
-Epoch 57/100[1m28700/28700[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m156s[0m 5ms/step - accuracy: 0.8997 - loss: 1.1056 - val_accuracy: 0.8898 - val_loss: 0.3528 - learning_rate: 1.2500e-04
-Epoch 58/100[1m28700/28700[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m159s[0m 6ms/step - accuracy: 0.8993 - loss: 1.1028 - val_accuracy: 0.8951 - val_loss: 0.3463 - learning_rate: 1.2500e-04
-Epoch 59/100[1m28700/28700[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m157s[0m 5ms/step - accuracy: 0.8997 - loss: 1.1039 - val_accuracy: 0.8868 - val_loss: 0.3439 - learning_rate: 1.2500e-04
-Epoch 60/100
-Epoch 60: ReduceLROnPlateau reducing learning rate to 6.25000029685907e-05.[1m28700/28700[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m161s[0m 6ms/step - accuracy: 0.8995 - loss: 1.1012 - val_accuracy: 0.8966 - val_loss: 0.3414 - learning_rate: 1.2500e-04
-Epoch 61/100[1m28700/28700[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m157s[0m 5ms/step - accuracy: 0.9013 - loss: 1.0847 - val_accuracy: 0.9085 - val_loss: 0.3394 - learning_rate: 6.2500e-05
-Epoch 62/100[1m28700/28700[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m163s[0m 6ms/step - accuracy: 0.9017 - loss: 1.0784 - val_accuracy: 0.9069 - val_loss: 0.3337 - learning_rate: 6.2500e-05
-Epoch 63/100[1m28700/28700[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m158s[0m 6ms/step - accuracy: 0.9020 - loss: 1.0740 - val_accuracy: 0.8954 - val_loss: 0.3422 - learning_rate: 6.2500e-05
-Epoch 64/100[1m28700/28700[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m157s[0m 5ms/step - accuracy: 0.9019 - loss: 1.0716 - val_accuracy: 0.8845 - val_loss: 0.3502 - learning_rate: 6.2500e-05
-Epoch 65/100[1m28700/28700[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m158s[0m 6ms/step - accuracy: 0.9021 - loss: 1.0731 - val_accuracy: 0.8986 - val_loss: 0.3453 - learning_rate: 6.2500e-05
-Epoch 66/100[1m28700/28700[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m163s[0m 6ms/step - accuracy: 0.9022 - loss: 1.0728 - val_accuracy: 0.8982 - val_loss: 0.3403 - learning_rate: 6.2500e-05
-Epoch 67/100
-Epoch 67: ReduceLROnPlateau reducing learning rate to 3.125000148429535e-05.[1m28700/28700[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m158s[0m 5ms/step - accuracy: 0.9023 - loss: 1.0713 - val_accuracy: 0.8959 - val_loss: 0.3453 - learning_rate: 6.2500e-05
-Epoch 68/100[1m28700/28700[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m159s[0m 6ms/step - accuracy: 0.9034 - loss: 1.0607 - val_accuracy: 0.9004 - val_loss: 0.3435 - learning_rate: 3.1250e-05
-Epoch 69/100[1m28700/28700[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m163s[0m 6ms/step - accuracy: 0.9031 - loss: 1.0610 - val_accuracy: 0.8948 - val_loss: 0.3430 - learning_rate: 3.1250e-05
-Epoch 70/100[1m28700/28700[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m163s[0m 6ms/step - accuracy: 0.9036 - loss: 1.0545 - val_accuracy: 0.9005 - val_loss: 0.3393 - learning_rate: 3.1250e-05
-Epoch 71/100[1m28700/28700[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m160s[0m 6ms/step - accuracy: 0.9037 - loss: 1.0548 - val_accuracy: 0.8859 - val_loss: 0.3459 - learning_rate: 3.1250e-05
-Epoch 72/100[1m28700/28700[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m162s[0m 6ms/step - accuracy: 0.9034 - loss: 1.0550 - val_accuracy: 0.8825 - val_loss: 0.3544 - learning_rate: 3.1250e-05
-Epoch 73/100[1m28700/28700[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m159s[0m 6ms/step - accuracy: 0.9036 - loss: 1.0553 - val_accuracy: 0.9016 - val_loss: 0.3498 - learning_rate: 3.1250e-05
-Epoch 73: early stopping
-Restoring model weights from the end of the best epoch: 53.
-I0000 00:00:1780155995.371838 3000972 dot_search_space.cc:240] All configs were filtered out because none of them sufficiently match the hints. Maybe the hints set does not contain a good representative set of valid configs? Working around this by using the full hints set instead.
-I0000 00:00:1780155996.286641 3000972 dot_search_space.cc:240] All configs were filtered out because none of them sufficiently match the hints. Maybe the hints set does not contain a good representative set of valid configs? Working around this by using the full hints set instead.
-
-Test Loss:     0.3324
-Test Accuracy: 0.9163
 Classification Report:
               precision    recall  f1-score   support
 
-           0       0.90      0.90      0.90     75978
-           1       0.46      0.70      0.56      8051
-           2       0.98      0.93      0.95     86208
-           3       0.97      0.98      0.97     26562
+           0       0.91      0.92      0.91     75978
+           1       0.47      0.77      0.59      8051
+           2       0.99      0.92      0.95     86208
+           3       0.98      0.99      0.98     26562
 
     accuracy                           0.92    196799
-   macro avg       0.83      0.88      0.85    196799
-weighted avg       0.93      0.92      0.92    196799
+   macro avg       0.84      0.90      0.86    196799
+weighted avg       0.94      0.92      0.93    196799
 
 Confusion matrix saved to confusion_matrix.png
 Training curves saved to training_curves.png
@@ -199,3 +70,6 @@ Saved:
   oscillogram_classifier.keras
   scaler.pkl
   label_encoder.pkl
+  
+  
+  
